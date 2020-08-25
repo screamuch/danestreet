@@ -7,5 +7,12 @@ User.new(3, "baz", 20)
 users = User.where(age: 20)
 
 users.each do |u|
-  puts "name: #{u.name}, age: #{u.age}"
+  puts "User id: #{u.id}, name: #{u.name}, age: #{u.age}"
+end
+
+puts "\n"
+users = User.where(name: "foo", age: 20)
+
+users.each do |u|
+  puts "User id: #{u.id}, name: #{u.name}, age: #{u.age}"
 end
