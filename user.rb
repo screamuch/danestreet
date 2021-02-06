@@ -3,16 +3,17 @@ require './lib/searchable.rb'
 class User < Searchable
   attr_accessor :id, :name, :age
 
-  def initialize(name, age)
-    @id = User.next_id
-    @name = name
-    @age = age
+  def initialize(id: nil, name:, age:)
+    if id
+      if User.where(id: id).empty?
+        @id = id
+      else
+        raise "User with such ID already exists"
+      end
+    else
+      @id = User.next_id
+    end
 
-    @@collection << self
-  end
-
-  def initialize(id, name, age)
-    @id = id
     @name = name
     @age = age
 

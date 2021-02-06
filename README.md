@@ -6,6 +6,7 @@
 # Examples included
 1. Default example from the description
 2. Looking up by name `foo` and age `20`
+3. At the end the program should raise `RuntimeError` because we are trying to add a record with ID that is already in the "database"
 
 # Description
 
