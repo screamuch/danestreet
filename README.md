@@ -6,7 +6,8 @@
 # Examples included
 1. Default example from the description
 2. Looking up by name `foo` and age `20`
-3. At the end the program should raise `RuntimeError` because we are trying to add a record with ID that is already in the "database"
+3. Looking up by conditional statement - users over `21` (will work with any method usable within the block - **10th requirement completed**)
+4. At the end the program should raise `RuntimeError` because we are trying to add a record with ID that is already in the "database"
 
 # Description
 
@@ -41,4 +42,35 @@ We should get something like:
   User id: 1, name: "foo", age: 20, 
   User id: 3, name: "baz", age: 20, 
 ]
+```
+
+# Input and Output as is:
+
+## Input
+```
+User id: 1, name: foo, age: 20
+User id: 2, name: bar, age: 21
+User id: 3, name: baz, age: 20
+User id: 4, name: aaa, age: 24
+User id: 1, name: bbb, age: 20 #=> this one causes the crash because id 1 is already taken
+```
+
+## Output
+```
+Finding users of age 20:
+User id: 1, name: foo, age: 20
+User id: 3, name: baz, age: 20
+
+Finding users with name 'foo' and age 20:
+User id: 1, name: foo, age: 20
+
+Finding users with legal drinking age in the US:
+User id: 2, name: bar, age: 21
+User id: 4, name: aaa, age: 24
+
+Trying to create user with ID already taken...
+Traceback (most recent call last):
+	2: from driver.rb:33:in `<main>'
+	1: from driver.rb:33:in `new'
+.../danestreet/user.rb:11:in `initialize': User with such ID already exists (RuntimeError)
 ```

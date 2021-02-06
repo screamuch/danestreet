@@ -1,9 +1,7 @@
 module Search
-  def self.where(collection, opts = { } )
+  def self.where(collection, &block)
     result = []
-    opts.each do |k, v|
-      result << collection.select { |c| c.send(k) == v } # this is unsafe but a quick way to get result
-    end
+    result << collection.select(&block)
     result.inject(:&)
   end
 end
@@ -20,7 +18,7 @@ class Searchable
     @@collection
   end
 
-  def self.where( opts = {} )
-    Search.where(@@collection, opts)
+  def self.where( &block )
+    Search.where(@@collection, &block)
   end
 end

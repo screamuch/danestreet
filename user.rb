@@ -5,7 +5,7 @@ class User < Searchable
 
   def initialize(id: nil, name:, age:)
     if id
-      if User.where(id: id).empty?
+      if User.where { |u| u.id == id }.empty?
         @id = id
       else
         raise "User with such ID already exists"
